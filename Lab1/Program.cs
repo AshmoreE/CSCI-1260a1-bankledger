@@ -1,9 +1,10 @@
 ﻿using Lab1;
 
-Transaction test = new Transaction(3, "Deposit", 7602);
-
-Console.WriteLine(test.Id);
-Console.WriteLine(test.Kind);
-Console.WriteLine(test.Amount);
-Console.WriteLine(test.IsDeposit());
-Console.WriteLine(test.Describe());
+Account test = new Account("Ethan", 7283);
+Console.WriteLine(test.Owner);
+Console.WriteLine(test.Balance);
+Console.WriteLine(test.Deposit(0));
+Console.WriteLine(test.Deposit(50));
+Console.WriteLine(test.Withdraw(10000));
+Console.WriteLine(test.Withdraw(50));
+Console.WriteLine(test.ToString());

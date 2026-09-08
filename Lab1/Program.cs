@@ -1,10 +1,27 @@
 ﻿using Lab1;
 
-Account test = new Account("Ethan", 7283);
-Console.WriteLine(test.Owner);
-Console.WriteLine(test.Balance);
-Console.WriteLine(test.Deposit(0));
-Console.WriteLine(test.Deposit(50));
-Console.WriteLine(test.Withdraw(10000));
-Console.WriteLine(test.Withdraw(50));
-Console.WriteLine(test.ToString());
+Account account = new Account("Ethan", 1000.00);
+
+Ledger ledger = new Ledger(account);
+
+// Test 1: Deposit
+bool result = ledger.Record("Deposit", 500.00);
+Console.WriteLine($"Accepted: {result}");
+Console.WriteLine($"Transaction Count: {ledger.Count}");
+
+// Test 2: Withdraw
+result = ledger.Record("Withdraw", 200.00);
+Console.WriteLine($"Accepted: {result}");
+Console.WriteLine($"Transaction Count: {ledger.Count}");
+
+// Test 3: Invalid transaction type
+result = ledger.Record("Transfer", 100.00);
+Console.WriteLine($"Accepted: {result}");
+Console.WriteLine($"Transaction Count: {ledger.Count}");
+
+// Test 4: Check totals
+Console.WriteLine($"Total Deposits: ${ledger.Total("Deposit"):N2}");
+Console.WriteLine($"Total Withdrawals: ${ledger.Total("Withdraw"):N2}");
+
+// Print the complete statement
+ledger.PrintStatement();

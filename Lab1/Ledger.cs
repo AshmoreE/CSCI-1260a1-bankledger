@@ -36,7 +36,7 @@ public class Ledger
         {
             isAccepted = _account.Deposit(amount);
         }
-        else if (kind == "Withdraw")
+        else if (kind == "Withdrawal") // Accidentaly had "Withdraw" instead of "Withdrawal"
         {
             isAccepted = _account.Withdraw(amount);
         }

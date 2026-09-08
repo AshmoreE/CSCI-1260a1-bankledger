@@ -1,27 +1,44 @@
 ﻿using Lab1;
 
-Account account = new Account("Ethan", 1000.00);
+public class Program
+{
+    public static void Main()
+    {
+        Account account1 = new Account("Ada Lovelace", 500);
+        Ledger ledger1 = new Ledger(account1);
 
-Ledger ledger = new Ledger(account);
+        Console.WriteLine($"Opening account: {account1}\n\nRecording five requests...");
 
-// Test 1: Deposit
-bool result = ledger.Record("Deposit", 500.00);
-Console.WriteLine($"Accepted: {result}");
-Console.WriteLine($"Transaction Count: {ledger.Count}");
+        string[] kinds =
+        {
+            "Deposit",
+            "Withdrawal",
+            "Withdrawal",
+            "Deposit",
+            "Deposit"
+        };
 
-// Test 2: Withdraw
-result = ledger.Record("Withdraw", 200.00);
-Console.WriteLine($"Accepted: {result}");
-Console.WriteLine($"Transaction Count: {ledger.Count}");
+        double[] amounts =
+        {
+            250,
+            125.50,
+            10000,
+            -40,
+            75.25
+        };
 
-// Test 3: Invalid transaction type
-result = ledger.Record("Transfer", 100.00);
-Console.WriteLine($"Accepted: {result}");
-Console.WriteLine($"Transaction Count: {ledger.Count}");
+        for (int i = 0; i < kinds.Length; i++)
+        {
+            bool isAccepted = ledger1.Record(kinds[i], amounts[i]);
 
-// Test 4: Check totals
-Console.WriteLine($"Total Deposits: ${ledger.Total("Deposit"):N2}");
-Console.WriteLine($"Total Withdrawals: ${ledger.Total("Withdraw"):N2}");
+            if (!isAccepted)
+            {
+                Console.WriteLine("  REJECTED: {0} of ${1:N2}", kinds[i], amounts[i]);
+            }
+        }
 
-// Print the complete statement
-ledger.PrintStatement();
+        Console.WriteLine($"\nTransactions accepted: {ledger1.Count}\n");
+
+        ledger1.PrintStatement();
+    }
+}

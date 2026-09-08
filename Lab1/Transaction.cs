@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace Lab1;
+﻿namespace Lab1;
 
 //This class shows money moving from one place to another
 public class Transaction
